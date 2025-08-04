@@ -1,18 +1,21 @@
-# 🧾 ENTREGAFINAL - Proyecto Phyton
+# ENTREGAFINAL - Proyecto Phyton
 
 Este proyecto fue desarrollado como entrega final del curso de Python. Consiste en una aplicación web construida con el patrón MVT (Modelo-Vista-Template) que permite gestionar cursos, profesores y estudiantes.
 
 ---
 
-## 🚀 Funcionalidades principales
+## Funcionalidades principales
 
 -Creacion:
   - **Profesores**
   - **Cursos**
+
 -Busqueda:
   - **Cursos**
+
 - Alta, baja y modificación de:
   - **Estudiantes**
+
 - Registro de usuarios y autenticación (login y logout)
 - Edición de perfil con imagen de usuario
 - Herencia de templates utilizando Bootstrap (Plantilla Grayscale)
@@ -20,7 +23,7 @@ Este proyecto fue desarrollado como entrega final del curso de Python. Consiste 
 
 ---
 
-## 🧩 Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - **Python 3**
 - **Django 5**
