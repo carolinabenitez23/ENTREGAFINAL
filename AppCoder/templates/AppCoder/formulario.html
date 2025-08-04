@@ -1,0 +1,15 @@
+{% extends 'AppCoder/base.html' %}
+
+{% load static %}
+
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+    <h2>{{ titulo }}</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Por favor, complete los siguientes campos:</p>
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock %}

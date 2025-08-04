@@ -1,0 +1,38 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block title %}Registrate{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="mb-4">Registrate en nuestra página</h2>
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+
+            <input type="hidden" name="next" value="{{ next }}">
+
+
+            {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+            {% endif %}
+
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="text-danger small">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary me-2">Registrate</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Sistema Django{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+
+    <!-- Fonts y estilos -->
+     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body id="page-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="{% url 'AppCoder:inicio' %}">Sistema Django</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                Menú <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:inicio' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:crear_profesor' %}">Crear Profesor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:crear_curso' %}">Crear Curso</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:crear_estudiante' %}">Crear Estudiante</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:buscar_curso' %}">Buscar Curso</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:estudiantes' %}">Estudiantes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:register' %}">Registrarse</a></li>
+                   {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:editar_perfil' %}">Editar Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link text-danger" href="{% url 'AppCoder:logout' %}">Cerrar Sesión ({{ user.username }})</a></li>
+                   {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'AppCoder:login' %}">Iniciar Sesión</a></li>
+                   {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cabecera -->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">App Coder</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Bienvenido/a al nuevo sistema</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido dinámico -->
+    <section class="projects-section bg-light" id="contenido">
+        <div class="container px-4 px-lg-5">
+
+                         <!-- DEBUGGING INFO -->
+    <div style="background-color: #f8d7da; color: #721c24; padding: 10px; margin-bottom: 20px;">
+        <p><strong>Estado de autenticación:</strong> {{ user.is_authenticated }}</p>
+        {% if user.is_authenticated %}
+            <p><strong>Usuario actual:</strong> {{ user.username }}</p>
+        {% else %}
+            <p>No hay usuario autenticado.</p>
+        {% endif %}
+    </div>
+    <!-- END DEBUGGING INFO -->
+     
+            {% block content %}
+            <!-- Aquí se inyecta el contenido de cada vista -->
+
+            {% endblock %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-black small text-center text-white-50">
+        <div class="container px-4 px-lg-5">© 2025 - Proyecto Django - Carolina Benitez</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

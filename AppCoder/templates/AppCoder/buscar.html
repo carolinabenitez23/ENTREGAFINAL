@@ -1,0 +1,42 @@
+{% extends 'AppCoder/base.html' %}
+
+{% block title %}Buscar Curso{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Buscar Curso</h3>
+                <form method="GET">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-grid mt-3">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if resultados %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <h4>Resultados encontrados:</h4>
+            <ul class="list-group">
+                {% for curso in resultados %}
+                    <li class="list-group-item">
+                        <strong>Nombre:</strong> {{ curso.nombre }} |
+                        <strong>Comisión:</strong> {{ curso.comision }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% elif request.GET.nombre %}
+    <div class="text-center mt-5">
+        <p class="text-danger">No se encontraron cursos con ese nombre.</p>
+    </div>
+{% endif %}
+{% endblock %}

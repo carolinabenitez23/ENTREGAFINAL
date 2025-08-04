@@ -1,0 +1,43 @@
+{% extends 'AppCoder/base.html' %}
+
+{% block title %}Lista de Estudiantes{% endblock %}
+
+{% block content %}
+<h1>Lista de Estudiantes</h1>
+
+{% if estudiantes %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>DNI</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estudiante in estudiantes %}
+        <tr>
+            <td>{{ estudiante.id }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td>{{ estudiante.apellido }}</td>
+            <td>{{ estudiante.email }}</td>
+            <td>{{ estudiante.dni }}</td>
+            <td>{{ estudiante.fecha_nacimiento|date:"Y-m-d" }}</td>
+            <td>
+                <a href="{% url 'AppCoder:eliminar_estudiante' estudiante.id %}" class="btn btn-danger btn-sm">Borrar</a>
+                <a href="{% url 'AppCoder:editar_estudiante' estudiante.id %}" class="btn btn-primary btn-sm">Editar</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay estudiantes registrados.</p>
+{% endif %}
+
+{% endblock %}

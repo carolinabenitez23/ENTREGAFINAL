@@ -1,0 +1,15 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block title %}Sesión Cerrada{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4 text-center">
+        <h2 class="mb-4">¡Has cerrado sesión exitosamente!</h2>
+        <p>Gracias por usar nuestra aplicación.</p>
+        <a href="{% url 'AppCoder:login' %}" class="btn btn-primary mt-3">Iniciar Sesión de Nuevo</a>
+        <a href="{% url 'AppCoder:inicio' %}" class="btn btn-secondary mt-3">Ir a la página de inicio</a>
+    </div>
+</div>
+{% endblock %}

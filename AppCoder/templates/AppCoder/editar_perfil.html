@@ -1,0 +1,34 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="mb-4">{{ titulo }}</h2>
+        <form method="POST" enctype="multipart/form-data"> {# Añadir enctype para subida de archivos #}
+            {% csrf_token %}
+            
+            {# Formulario de usuario #}
+            <fieldset class="form-group mb-4">
+                <legend class="border-bottom mb-4">Datos de Usuario</legend>
+                {{ form_user.as_p }}
+            </fieldset>
+
+            {# Formulario de avatar #}
+            <fieldset class="form-group mb-4">
+                <legend class="border-bottom mb-4">Avatar</legend>
+                {% if user.estudiante.avatar %}
+                    <img src="{{ user.estudiante.avatar.url }}" alt="Avatar de {{ user.username }}" class="img-thumbnail rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                {% else %}
+                    <p>No tienes un avatar configurado.</p>
+                {% endif %}
+                {{ form_avatar.as_p }}
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

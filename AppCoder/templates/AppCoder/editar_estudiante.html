@@ -1,0 +1,32 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="mb-4">{{ titulo }}</h2>
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="text-danger small">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary me-2">
+                {% if "Editar" in titulo %}Guardar cambios{% else %}Crear Estudiante{% endif %}
+            </button>
+            <a href="{% url 'AppCoder:estudiantes' %}" class="btn btn-secondary">Volver a la lista</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
